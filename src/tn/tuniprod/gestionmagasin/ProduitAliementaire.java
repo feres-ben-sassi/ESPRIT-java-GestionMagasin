@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tuniprod.gestionmagasin;
+package tn.tuniprod.gestionmagasin;
 
 import java.util.Date;
 
@@ -13,10 +13,10 @@ import java.util.Date;
  */
 public class ProduitAliementaire {
 
-    int identifiant;
-    String libelle, marque;
-    float prix;
-    Date dateExpriration ; 
+    private int identifiant;
+    private String libelle, marque;
+    private float prix;
+    private Date dateExpriration ; 
 
     public ProduitAliementaire() {
     }
@@ -49,7 +49,7 @@ public class ProduitAliementaire {
     
     @Override
     public String toString(){
-        String s = "";
+        String s = " ---------------------- \n";
         s+="identifiant : "+this.identifiant+"\n";
         s+="libelle : "+this.libelle+"\n";
         s+="marque : "+this.marque+"\n";
@@ -57,5 +57,14 @@ public class ProduitAliementaire {
         return s;
     }
     
+    
+    public void affecterPrix(float  price){
+        if(price>=0){
+            this.prix = price;
+        }
+        else{
+            System.out.println("le prix est négatif !!");
+        }
+    }
 
 }

@@ -17,6 +17,8 @@ public class ProduitAliementaire {
     private String libelle, marque;
     private float prix;
     private Date dateExpriration ; 
+    
+    
 
     public ProduitAliementaire() {
     }
@@ -33,6 +35,48 @@ public class ProduitAliementaire {
         this.marque = marque;
         this.prix = prix;
     }
+
+    public int getIdentifiant() {
+        return identifiant;
+    }
+
+    public void setIdentifiant(int identifiant) {
+        this.identifiant = identifiant;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    public String getMarque() {
+        return marque;
+    }
+
+    public void setMarque(String marque) {
+        this.marque = marque;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+
+    public Date getDateExpriration() {
+        return dateExpriration;
+    }
+
+    public void setDateExpriration(Date dateExpriration) {
+        this.dateExpriration = dateExpriration;
+    }
+    
+    
     
     public void affecterDateExpiration(Date date){
         this.dateExpriration = date;
@@ -66,5 +110,13 @@ public class ProduitAliementaire {
             System.out.println("le prix est négatif !!");
         }
     }
+    
+    public boolean comparer(ProduitAliementaire produit){
+        return this.identifiant==produit.identifiant&&
+                this.prix==produit.prix&&
+                this.libelle==produit.libelle;
+    }
+    
+  
 
 }

@@ -14,8 +14,11 @@ public class Magasin {
     int identifiant;
     String adresse;
     int capacite;
+    int nbrEmploye;
+    String nom;
 
     ProduitAliementaire[] produits;
+    Employe[] employes = new Employe[20];
 
     public Magasin(int identifiant, String adresse) {
         this.identifiant = identifiant;
@@ -23,9 +26,17 @@ public class Magasin {
         this.produits = new ProduitAliementaire[50];
     }
 
+    public Magasin(int identifiant, String nom, String adresse) {
+        this.identifiant = identifiant;
+        this.adresse = adresse;
+        this.produits = new ProduitAliementaire[50];
+        this.nom = nom;
+    }
+
     @Override
     public String toString() {
         String s = "";
+        s += "NOM MAGASIN : " + this.nom + " \n";
         s += "identifiant : " + this.identifiant + " \n";
         s += "adresse : " + this.adresse + " \n";
         s += "capacite : " + this.capacite + " \n";
@@ -35,7 +46,12 @@ public class Magasin {
             prods += this.produits[i];
         }
 
-        return s + prods;
+        String empl = "";
+        for (int i = 0; i < this.nbrEmploye; i++) {
+            empl += this.employes[i];
+        }
+
+        return s + prods + "\n" + empl;
     }
 
     public void ajouterProduit(ProduitAliementaire produit) {
@@ -46,25 +62,29 @@ public class Magasin {
             this.capacite++;
         }
     }
-    
-    public int getIndexOfProduit(ProduitAliementaire produit){
-        for(int i=0;i<this.capacite;i++){
-            if(this.produits[i].comparer(produit)){
+
+    public void ajouterEmploye(Employe employe) {
+        this.employes[nbrEmploye] = employe;
+        this.nbrEmploye++;
+    }
+
+    public int getIndexOfProduit(ProduitAliementaire produit) {
+        for (int i = 0; i < this.capacite; i++) {
+            if (this.produits[i].comparer(produit)) {
                 return i;
             }
         }
         return -1;
     }
-    
-    public void supprimerProduit(ProduitAliementaire produit){
+
+    public void supprimerProduit(ProduitAliementaire produit) {
         int indexProduit = this.getIndexOfProduit(produit);
-        if(indexProduit==-1){
+        if (indexProduit == -1) {
             System.out.println("impossible de supprimer un produit qui n'existe pas dans le magasin");
-        }
-        else{
-            for(int i=indexProduit;i<capacite;i++){
-                this.produits[i]=this.produits[i+1];
-                this.produits[capacite]=null;
+        } else {
+            for (int i = indexProduit; i < capacite; i++) {
+                this.produits[i] = this.produits[i + 1];
+                this.produits[capacite] = null;
                 this.capacite--;
             }
         }
@@ -88,13 +108,18 @@ public class Magasin {
         }
         return false;
     }
-    
-    public  Magasin comparer(Magasin m){
-        if(this.capacite>=m.capacite){
+
+    public Magasin comparer(Magasin m) {
+        if (this.capacite >= m.capacite) {
             return this;
-        }
-        else{
+        } else {
             return m;
+        }
+    }
+
+    public void afficherEmployes() {
+        for (int i = 0; i < nbrEmploye; i++) {
+            System.out.println(employes[i]);
         }
     }
 
